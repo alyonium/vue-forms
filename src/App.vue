@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <form>
+        <form v-if="!isSubmitted">
             <div class="row">
                 <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                     <h1>Form for your order</h1>
@@ -70,9 +70,18 @@
                     <!-- Password -->
                     <!-- Store Data? Yes/No -->
 
+                    <div class="col-xs-2 col-xs-offset-5">
+                        <input
+                                type="submit"
+                                value="Submit"
+                                @click.prevent="submitted()">
+                    </div>
+
                     <!-- Exercise 2 -->
                     <!-- Only display the Form if it has NOT been submitted -->
                     <!-- Display the Data Summary ONCE the Form HAS been submitted -->
+
+
 
                     <!-- Exercise 3 -->
                     <!-- Edit the Example from above and create a custom "Full Name" Control -->
@@ -80,8 +89,7 @@
                 </div>
             </div>
         </form>
-        <hr>
-        <div class="row">
+        <div v-else class="row">
             <div class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -108,8 +116,14 @@
                 email: 'alyonium@gmail.com',
                 password: '',
             },
-            store: 'Yes'
-        })
+            store: 'Yes',
+            isSubmitted: false,
+        }),
+        methods: {
+            submitted()  {
+                this.isSubmitted = true;
+            }
+        }
     }
 </script>
 
